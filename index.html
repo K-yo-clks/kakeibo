@@ -51,22 +51,21 @@
     .nav{
       position:fixed;bottom:0;inset-x:0;z-index:100;
       background:var(--bg2);border-top:1px solid var(--bd);
-      display:flex;padding-bottom:env(safe-area-inset-bottom);
+      display:flex;align-items:stretch;
+      padding-bottom:env(safe-area-inset-bottom);
+      height:calc(60px + env(safe-area-inset-bottom));
     }
     .nb{
-      flex:1;display:flex;flex-direction:column;align-items:center;
-      gap:5px;padding:10px 2px;background:transparent;border:none;
-      color:var(--dim);font-family:var(--fnt);font-size:10px;letter-spacing:0;
-      cursor:pointer;white-space:nowrap;   /* ← 改行禁止 */
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:5px;padding:8px 4px 6px;background:transparent;border:none;
+      color:var(--dim);font-family:var(--fnt);font-size:11px;
+      letter-spacing:0;white-space:nowrap;cursor:pointer;
+      transition:color .15s, background .15s;
     }
-    .nb.on{color:var(--acc);}
-    .nb:active{background:var(--acc-bg);color:var(--acc);}
+    .nb.on{color:var(--acc);background:var(--acc-bg);}
+    .nb:active{color:var(--acc);background:var(--acc-bg);}
     .nb-ic{
-      font-size:14px;font-weight:bold;line-height:1;
-      border:1px solid currentColor;
-      padding:7px 11px;          /* ← タップ領域を拡大 */
-      border-radius:3px;
-      min-width:34px;text-align:center;   /* ← 幅を統一 */
+      font-size:18px;line-height:1;
     }
 
     /* ══ PC サイドバー ══ */
@@ -568,11 +567,11 @@ function nav(p){destroyCharts();page=p;render();}
 
 function renderNav(){
   const items=[
-    {p:'home', ic:'H', lb:'ホーム'},
-    {p:'list', ic:'L', lb:'一覧'},
-    {p:'graph',ic:'G', lb:'グラフ'},
-    {p:'fixed',ic:'F', lb:'固定費'},
-    {p:'master',ic:'M',lb:'マスタ'},
+    {p:'home',  ic:'🏠', lb:'ホーム'},
+    {p:'list',  ic:'📋', lb:'一覧'},
+    {p:'graph', ic:'📊', lb:'グラフ'},
+    {p:'fixed', ic:'📌', lb:'固定費'},
+    {p:'master',ic:'⚙️', lb:'マスタ'},
   ];
   document.getElementById('nav').innerHTML=items.map(it=>`
     <button class="nb${page===it.p?' on':''}" onclick="nav('${it.p}')">
