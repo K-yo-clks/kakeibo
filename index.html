@@ -19,28 +19,21 @@
     }
     html,body{background:var(--bg);color:var(--txt);font-family:var(--fnt);min-height:100dvh;font-size:15px;}
 
-    /* ══ LOADING OVERLAY ══ */
+    /* ══ LOADING ══ */
     #loadOverlay{
-      position:fixed;inset:0;z-index:9999;
-      background:var(--bg);
+      position:fixed;inset:0;z-index:9999;background:var(--bg);
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
     }
     .load-title{font-size:15px;letter-spacing:6px;color:var(--acc);}
-    .load-spinner{
-      width:32px;height:32px;border:2px solid var(--bd2);
-      border-top-color:var(--acc);border-radius:50%;
-      animation:spin .8s linear infinite;
-    }
+    .load-spinner{width:32px;height:32px;border:2px solid var(--bd2);border-top-color:var(--acc);border-radius:50%;animation:spin .8s linear infinite;}
     .load-msg{font-size:11px;letter-spacing:2px;color:var(--sub);}
     @keyframes spin{to{transform:rotate(360deg)}}
 
     /* ══ HEADER ══ */
     .hdr{
       position:fixed;top:0;right:0;left:0;z-index:100;
-      height:var(--hh);background:var(--bg2);
-      border-bottom:1px solid var(--acc);
-      display:flex;align-items:center;justify-content:center;
-      gap:12px;
+      height:var(--hh);background:var(--bg2);border-bottom:1px solid var(--acc);
+      display:flex;align-items:center;justify-content:center;gap:12px;
     }
     .hdr-title{font-size:15px;letter-spacing:6px;color:var(--acc);}
     .hdr-dim{color:var(--dim);}
@@ -48,14 +41,13 @@
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
     #syncBadge{font-size:10px;letter-spacing:1px;color:var(--dim);min-width:50px;text-align:center;}
     .btn-refresh{
-      position:absolute;right:12px;
-      background:transparent;border:1px solid var(--bd2);
+      position:absolute;right:12px;background:transparent;border:1px solid var(--bd2);
       color:var(--sub);font-family:var(--fnt);font-size:10px;letter-spacing:1px;
       padding:5px 10px;border-radius:3px;cursor:pointer;
     }
     .btn-refresh:active{border-color:var(--acc);color:var(--acc);}
 
-    /* ══ NAV（モバイル下部） ══ */
+    /* ══ NAV モバイル ══ */
     .nav{
       position:fixed;bottom:0;inset-x:0;z-index:100;
       background:var(--bg2);border-top:1px solid var(--bd);
@@ -64,13 +56,11 @@
     .nb{
       flex:1;display:flex;flex-direction:column;align-items:center;
       gap:3px;padding:10px 0;background:transparent;border:none;
-      color:var(--dim);font-family:var(--fnt);font-size:10px;
-      letter-spacing:0.5px;cursor:pointer;transition:color .15s;
+      color:var(--dim);font-family:var(--fnt);font-size:10px;letter-spacing:.5px;cursor:pointer;
     }
     .nb.on{color:var(--acc);}
     .nb:active{color:var(--acc);}
-    .nb-ic{font-size:12px;letter-spacing:0;font-weight:bold;line-height:1.4;
-      border:1px solid currentColor;padding:1px 4px;border-radius:2px;}
+    .nb-ic{font-size:12px;font-weight:bold;line-height:1.4;border:1px solid currentColor;padding:1px 4px;border-radius:2px;}
 
     /* ══ PC サイドバー ══ */
     @media(min-width:768px){
@@ -80,11 +70,7 @@
         flex-direction:column;border-top:none;border-right:1px solid var(--bd);
         padding-bottom:0;padding-top:calc(var(--hh) + 10px);overflow-y:auto;
       }
-      .nb{
-        flex-direction:row;justify-content:flex-start;
-        padding:15px 22px;font-size:13px;gap:13px;
-        border-left:3px solid transparent;letter-spacing:1px;
-      }
+      .nb{flex-direction:row;justify-content:flex-start;padding:15px 22px;font-size:13px;gap:13px;border-left:3px solid transparent;letter-spacing:1px;}
       .nb.on{border-left-color:var(--acc);background:var(--acc-bg);color:var(--acc);}
       .nb-ic{font-size:11px;}
     }
@@ -96,11 +82,7 @@
       padding-inline:13px;max-width:580px;margin-inline:auto;
     }
     @media(min-width:768px){
-      .main{
-        margin-left:var(--nw);margin-right:0;
-        padding-bottom:36px;padding-inline:30px;
-        max-width:calc(var(--nw) + 800px);
-      }
+      .main{margin-left:var(--nw);margin-right:0;padding-bottom:36px;padding-inline:30px;max-width:calc(var(--nw) + 800px);}
     }
 
     /* ══ CARD ══ */
@@ -116,8 +98,7 @@
     input,select,textarea{
       background:var(--bg);border:1px solid var(--bd2);color:var(--txt);
       font-family:var(--fnt);font-size:16px;padding:12px 13px;
-      border-radius:3px;width:100%;outline:none;
-      -webkit-appearance:none;appearance:none;
+      border-radius:3px;width:100%;outline:none;-webkit-appearance:none;appearance:none;
     }
     input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc-dim);}
     input::placeholder{color:var(--dim);}
@@ -138,8 +119,7 @@
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:6px;
       padding:12px 16px;border:1px solid;border-radius:3px;
-      font-family:var(--fnt);font-size:13px;letter-spacing:1px;cursor:pointer;
-      min-height:46px;transition:opacity .15s;
+      font-family:var(--fnt);font-size:13px;letter-spacing:1px;cursor:pointer;min-height:46px;
     }
     .btn:active{opacity:.65;}
     .btn-p{background:var(--acc-bg);border-color:var(--acc);color:var(--acc);}
@@ -152,30 +132,18 @@
     /* ══ TABLE ══ */
     .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
     table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px;}
-    thead th{
-      background:var(--bg3);color:var(--sub);font-size:11px;letter-spacing:2px;
-      text-transform:uppercase;padding:10px;text-align:left;
-      border-bottom:1px solid var(--bd2);
-    }
+    thead th{background:var(--bg3);color:var(--sub);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;text-align:left;border-bottom:1px solid var(--bd2);}
     tbody td{padding:11px 10px;border-bottom:1px solid var(--bd);vertical-align:middle;color:var(--txt);}
     tbody tr:last-child td{border-bottom:none;}
 
     /* ══ TABS ══ */
     .tabs{display:flex;border:1px solid var(--bd);border-radius:3px;overflow:hidden;margin-bottom:14px;}
-    .tab{
-      flex:1;padding:12px 4px;background:transparent;border:none;
-      border-right:1px solid var(--bd);font-family:var(--fnt);
-      font-size:12px;letter-spacing:1px;color:var(--sub);cursor:pointer;text-align:center;
-    }
+    .tab{flex:1;padding:12px 4px;background:transparent;border:none;border-right:1px solid var(--bd);font-family:var(--fnt);font-size:12px;letter-spacing:1px;color:var(--sub);cursor:pointer;text-align:center;}
     .tab:last-child{border-right:none;}
     .tab.on{background:var(--acc-bg);color:var(--acc);}
 
     /* ══ COLLAPSE ══ */
-    .coll-btn{
-      width:100%;text-align:left;background:transparent;border:none;cursor:pointer;
-      font-family:var(--fnt);color:var(--txt);display:flex;justify-content:space-between;
-      align-items:center;padding:0;font-size:13px;letter-spacing:2px;
-    }
+    .coll-btn{width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:var(--fnt);color:var(--txt);display:flex;justify-content:space-between;align-items:center;padding:0;font-size:13px;letter-spacing:2px;}
     .coll-ic{color:var(--sub);font-size:12px;transition:transform .2s;}
     .coll-ic.open{transform:rotate(90deg);}
 
@@ -195,16 +163,13 @@
     hr.sep{border:none;border-top:1px solid var(--bd);margin:13px 0;}
     .sr{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--bd);}
     .sr:last-child{border-bottom:none;}
-    .c-acc{color:var(--acc);} .c-red{color:var(--red);} .c-sub{color:var(--sub);} .c-yel{color:var(--yel);}
-    .fs11{font-size:11px;} .fs12{font-size:12px;} .fs13{font-size:13px;}
-    .fs14{font-size:14px;} .fs15{font-size:15px;} .fs28{font-size:28px;}
-    .ls2{letter-spacing:2px;} .bold{font-weight:bold;}
-    .mt6{margin-top:6px;} .mt10{margin-top:10px;} .mt12{margin-top:12px;}
-    .mb8{margin-bottom:8px;} .mb12{margin-bottom:12px;}
+    .c-acc{color:var(--acc);}.c-red{color:var(--red);}.c-sub{color:var(--sub);}.c-yel{color:var(--yel);}
+    .fs11{font-size:11px;}.fs12{font-size:12px;}.fs13{font-size:13px;}.fs14{font-size:14px;}.fs15{font-size:15px;}.fs28{font-size:28px;}
+    .ls2{letter-spacing:2px;}.bold{font-weight:bold;}
+    .mt6{margin-top:6px;}.mt10{margin-top:10px;}.mt12{margin-top:12px;}
+    .mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}
     .hidden{display:none!important;}
     .empty{color:var(--sub);font-size:13px;text-align:center;padding:22px 0;}
-
-    /* ══ STATUS ══ */
     .status-bar{font-size:12px;letter-spacing:1px;padding:6px 0;color:var(--sub);margin-top:6px;}
     .status-all{color:var(--yel);}
 
@@ -222,10 +187,7 @@
       background:var(--bg2);border:1px solid var(--acc);border-radius:3px;
       padding:22px 18px;margin-bottom:13px;position:relative;overflow:hidden;
     }
-    .stat-card::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(135deg,var(--acc-bg) 0%,transparent 55%);pointer-events:none;
-    }
+    .stat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--acc-bg) 0%,transparent 55%);pointer-events:none;}
     .stat-lbl{font-size:11px;letter-spacing:3px;color:var(--sub);text-transform:uppercase;}
     .stat-val{font-size:38px;letter-spacing:2px;color:var(--acc);margin-top:5px;line-height:1;}
     .stat-sub{font-size:12px;color:var(--dim);margin-top:8px;}
@@ -240,24 +202,17 @@
     .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;flex-shrink:0;}
     .ops-col{display:flex;flex-direction:column;gap:4px;align-items:center;}
 
-    /* ══ ERROR CARD ══ */
-    .err-card{
-      background:var(--red-bg);border:1px solid var(--red);border-radius:3px;
-      padding:16px;margin-bottom:13px;font-size:13px;color:var(--red);line-height:1.7;
-    }
-    .err-card code{
-      display:block;background:var(--bg);padding:10px;margin-top:8px;
-      font-size:11px;color:var(--yel);word-break:break-all;border-radius:2px;
-    }
+    /* ══ ERROR ══ */
+    .err-card{background:var(--red-bg);border:1px solid var(--red);border-radius:3px;padding:16px;margin-bottom:13px;font-size:13px;color:var(--red);line-height:1.7;}
+    .err-card code{display:block;background:var(--bg);padding:10px;margin-top:8px;font-size:11px;color:var(--yel);word-break:break-all;border-radius:2px;}
   </style>
 </head>
 <body>
 
-<!-- ロードオーバーレイ -->
 <div id="loadOverlay">
   <div class="load-title">// 家 計 簿</div>
   <div class="load-spinner"></div>
-  <div class="load-msg" id="loadMsg">データを読み込み中...</div>
+  <div class="load-msg" id="loadMsg">読み込み中...</div>
 </div>
 
 <header class="hdr">
@@ -271,9 +226,9 @@
 
 <script>
 // ═══════════════════════════════════════════════════
-//  !! 設定 !! — Apps Script のデプロイURLを入れる
+//  ★ここだけ変える★
 // ═══════════════════════════════════════════════════
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyfodstc3vCVToWhGNSTnqpU_EVQ_c5diPRYsthJ7RScdpXOT-EBWTxnKE519oibZMX/exec';
+const GAS_URL = 'YOUR_GAS_DEPLOY_URL_HERE';
 
 // ═══════════════════════════════════════════════════
 //  初期値
@@ -291,27 +246,52 @@ const INIT_PAYMENT_NAMES = ['現金','クレジットカード','電子マネー
 const PALETTE = ['#39d353','#7eb8d4','#e2c96e','#c084fc','#fb923c','#ff6060','#60a5fa','#34d399','#f472b6','#a78bfa'];
 
 // ═══════════════════════════════════════════════════
-//  キャッシュ（UI は常にここから読む）
+//  メモリキャッシュ
 // ═══════════════════════════════════════════════════
 let CACHE = {
-  purposes:     [],
-  transactions: [],
-  payments:     [], // [{id, name}, ...]
-  fixCats:      [],
-  fixRecs:      [],
+  purposes:[], transactions:[], payments:[], fixCats:[], fixRecs:[],
 };
+
+// ローカルストレージキャッシュ
+const LS_KEY    = 'kakeibo_v2';
+const LS_TS_KEY = 'kakeibo_v2_ts';
+
+function saveLS(){
+  try{
+    localStorage.setItem(LS_KEY, JSON.stringify(CACHE));
+    localStorage.setItem(LS_TS_KEY, Date.now().toString());
+  } catch(e){}
+}
+
+function loadLS(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return false;
+    const p = JSON.parse(raw);
+    if(!p.purposes || !p.transactions) return false;
+    CACHE.purposes     = p.purposes     ?? [];
+    CACHE.transactions = p.transactions ?? [];
+    CACHE.payments     = p.payments     ?? [];
+    CACHE.fixCats      = p.fixCats      ?? [];
+    CACHE.fixRecs      = p.fixRecs      ?? [];
+    return true;
+  } catch(e){ return false; }
+}
+
+function lsAgeMs(){
+  const ts = localStorage.getItem(LS_TS_KEY);
+  return ts ? Date.now() - parseInt(ts) : Infinity;
+}
 
 // ═══════════════════════════════════════════════════
 //  状態
 // ═══════════════════════════════════════════════════
-let page       = 'home';
-let gMode      = 'monthly';
-let charts     = {};
-let coll       = {pm:false, cat:false};
-let listFilter = '';
-const _n = new Date();
-let fixYM = {y:_n.getFullYear(), m:_n.getMonth()+1};
-let syncCount = 0;
+let page='home', gMode='monthly', charts={};
+let coll={pm:false, cat:false};
+let listFilter='';
+const _n=new Date();
+let fixYM={y:_n.getFullYear(), m:_n.getMonth()+1};
+let syncCount=0;
 
 // ═══════════════════════════════════════════════════
 //  ユーティリティ
@@ -335,16 +315,9 @@ function toast(msg){
   setTimeout(()=>el.remove(),2600);
 }
 
-function setSyncing(delta){
-  syncCount+=delta;
+function setBadge(text, color='var(--dim)'){
   const el=document.getElementById('syncBadge');
-  if(!el)return;
-  if(syncCount>0){
-    el.textContent='同期中...';el.style.color='var(--yel)';
-  } else {
-    el.textContent='同期済み';el.style.color='var(--acc)';
-    setTimeout(()=>{const e=document.getElementById('syncBadge');if(e)e.textContent='';},2000);
-  }
+  if(el){el.textContent=text;el.style.color=color;}
 }
 
 // ═══════════════════════════════════════════════════
@@ -360,130 +333,153 @@ async function api(action, sheet, data=null, id=null){
   return await res.json();
 }
 
-// 差分同期（追加/更新/削除を自動判定）
 async function diffSync(sheet, oldArr, newArr){
-  // 削除
   for(const item of oldArr){
-    if(!newArr.find(n=>n.id===item.id)){
-      await api('delete', sheet, null, item.id);
-    }
+    if(!newArr.find(n=>n.id===item.id)) await api('delete',sheet,null,item.id);
   }
-  // 追加
   for(const item of newArr){
-    if(!oldArr.find(o=>o.id===item.id)){
-      await api('insert', sheet, item);
-    }
+    if(!oldArr.find(o=>o.id===item.id)) await api('insert',sheet,item);
   }
-  // 更新
   for(const item of newArr){
     const old=oldArr.find(o=>o.id===item.id);
-    if(old && JSON.stringify(old)!==JSON.stringify(item)){
-      await api('update', sheet, item);
-    }
+    if(old && JSON.stringify(old)!==JSON.stringify(item)) await api('update',sheet,item);
   }
 }
 
-// バックグラウンド同期（UI をブロックしない）
 function bgSync(fn){
-  setSyncing(1);
-  fn().catch(e=>console.error('Sync error:',e)).finally(()=>setSyncing(-1));
+  syncCount++;
+  setBadge('同期中...','var(--yel)');
+  fn().catch(e=>console.error('Sync error:',e)).finally(()=>{
+    syncCount--;
+    if(syncCount<=0){
+      syncCount=0;
+      setBadge('同期済み','var(--acc)');
+      setTimeout(()=>setBadge(''),2000);
+    }
+  });
 }
 
 // ═══════════════════════════════════════════════════
-//  初期ロード
+//  GASから全データ取得
+// ═══════════════════════════════════════════════════
+async function fetchAll(){
+  const [purps,txs,pays,cats,recs] = await Promise.all([
+    api('getAll','purposes'),
+    api('getAll','transactions'),
+    api('getAll','payment_methods'),
+    api('getAll','fixed_cats'),
+    api('getAll','fixed_records'),
+  ]);
+
+  if(Array.isArray(purps)&&purps.length) CACHE.purposes=purps;
+  else if(!CACHE.purposes.length) CACHE.purposes=[...INIT_PURPOSES];
+
+  CACHE.transactions=Array.isArray(txs)
+    ?txs.map(t=>({...t,amount:Number(t.amount)})):[];
+
+  if(Array.isArray(pays)&&pays.length) CACHE.payments=pays;
+  else if(!CACHE.payments.length) CACHE.payments=INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
+
+  CACHE.fixCats=Array.isArray(cats)
+    ?cats.map(c=>({...c,expectedAmount:Number(c.expectedAmount||0)})):[];
+
+  CACHE.fixRecs=Array.isArray(recs)
+    ?recs.map(r=>({...r,amount:Number(r.amount),y:Number(r.y),m:Number(r.m)})):[];
+
+  // スプレッドシートが空なら初期データを書き込む
+  if(!Array.isArray(purps)||!purps.length){
+    for(const p of CACHE.purposes) await api('insert','purposes',p);
+  }
+  if(!Array.isArray(pays)||!pays.length){
+    for(const p of CACHE.payments) await api('insert','payment_methods',p);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+//  起動処理（キャッシュ優先）
 // ═══════════════════════════════════════════════════
 async function init(){
   const overlay=document.getElementById('loadOverlay');
   const msg=document.getElementById('loadMsg');
-  overlay.style.display='flex';
 
-  // GAS URL が未設定
+  // GAS URL未設定
   if(GAS_URL==='YOUR_GAS_DEPLOY_URL_HERE'){
     CACHE.purposes=[...INIT_PURPOSES];
     CACHE.payments=INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
     overlay.style.display='none';
-    page='home';
     render();
     setTimeout(()=>{
       document.getElementById('main').insertAdjacentHTML('afterbegin',`
       <div class="err-card">
         &#9888; GAS_URL が未設定です。<br>
-        index.html の先頭にある <strong>GAS_URL</strong> に<br>
-        Apps Script のデプロイURLを入力してください。
+        index.html の先頭 <strong>const GAS_URL = '...'</strong> にデプロイURLを貼ってください。
         <code>const GAS_URL = 'https://script.google.com/macros/s/..../exec';</code>
       </div>`);
     },100);
     return;
   }
 
-  try {
-    msg.textContent='スプレッドシートに接続中...';
-    // 全シート初期化（初回のみヘッダーが作られる）
+  // ① ローカルキャッシュがあれば即表示
+  const hasCache=loadLS();
+  if(hasCache){
+    overlay.style.display='none';
+    render();
+    // 5分以上古ければバックグラウンドで同期
+    if(lsAgeMs() > 5*60*1000){
+      silentSync();
+    } else {
+      const min=Math.floor(lsAgeMs()/60000);
+      setBadge(min===0?'最新':`${min}分前に同期`,'var(--dim)');
+    }
+    return;
+  }
+
+  // ② 初回のみローディング表示して取得
+  overlay.style.display='flex';
+  msg.textContent='スプレッドシートに接続中...';
+  try{
     await api('initAll','');
-
     msg.textContent='データを読み込み中...';
-    const [purps,txs,pays,cats,recs] = await Promise.all([
-      api('getAll','purposes'),
-      api('getAll','transactions'),
-      api('getAll','payment_methods'),
-      api('getAll','fixed_cats'),
-      api('getAll','fixed_records'),
-    ]);
-
-    CACHE.purposes     = Array.isArray(purps)&&purps.length ? purps : [...INIT_PURPOSES];
-    CACHE.transactions = Array.isArray(txs)
-      ? txs.map(t=>({...t, amount:Number(t.amount)}))
-      : [];
-    CACHE.payments     = Array.isArray(pays)&&pays.length
-      ? pays
-      : INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
-    CACHE.fixCats      = Array.isArray(cats)
-      ? cats.map(c=>({...c, expectedAmount:Number(c.expectedAmount||0)}))
-      : [];
-    CACHE.fixRecs      = Array.isArray(recs)
-      ? recs.map(r=>({...r, amount:Number(r.amount), y:Number(r.y), m:Number(r.m)}))
-      : [];
-
-    // 初期データがスプレッドシートになければ書き込む
-    if(!Array.isArray(purps)||!purps.length){
-      for(const p of CACHE.purposes) await api('insert','purposes',p);
-    }
-    if(!Array.isArray(pays)||!pays.length){
-      for(const p of CACHE.payments) await api('insert','payment_methods',p);
-    }
-
-  } catch(e) {
-    console.error('Init error:',e);
-    toast('× 読み込み失敗。データなしで起動します。');
+    await fetchAll();
+    saveLS();
+  } catch(e){
+    console.error(e);
+    toast('× 接続失敗。初期データで起動します。');
     CACHE.purposes=[...INIT_PURPOSES];
     CACHE.payments=INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
   }
-
   overlay.style.display='none';
   render();
 }
 
+// バックグラウンド同期
+async function silentSync(){
+  setBadge('同期中...','var(--yel)');
+  try{
+    await fetchAll();
+    saveLS();
+    destroyCharts();
+    render();
+    setBadge('同期済み','var(--acc)');
+    setTimeout(()=>setBadge(''),2000);
+  } catch(e){
+    console.warn('Silent sync failed:',e);
+    setBadge('オフライン','var(--red)');
+  }
+}
+
+// 手動更新
 async function reloadData(){
   const overlay=document.getElementById('loadOverlay');
   const msg=document.getElementById('loadMsg');
   overlay.style.display='flex';
   msg.textContent='最新データを取得中...';
   try{
-    const [purps,txs,pays,cats,recs]=await Promise.all([
-      api('getAll','purposes'),
-      api('getAll','transactions'),
-      api('getAll','payment_methods'),
-      api('getAll','fixed_cats'),
-      api('getAll','fixed_records'),
-    ]);
-    if(Array.isArray(purps)) CACHE.purposes=purps;
-    if(Array.isArray(txs))   CACHE.transactions=txs.map(t=>({...t,amount:Number(t.amount)}));
-    if(Array.isArray(pays))  CACHE.payments=pays;
-    if(Array.isArray(cats))  CACHE.fixCats=cats.map(c=>({...c,expectedAmount:Number(c.expectedAmount||0)}));
-    if(Array.isArray(recs))  CACHE.fixRecs=recs.map(r=>({...r,amount:Number(r.amount),y:Number(r.y),m:Number(r.m)}));
+    await fetchAll();
+    saveLS();
     toast('✓ 最新データに更新しました');
   } catch(e){
-    toast('× 更新に失敗しました');
+    toast('× 更新失敗（キャッシュを表示中）');
   }
   overlay.style.display='none';
   destroyCharts();
@@ -491,48 +487,41 @@ async function reloadData(){
 }
 
 // ═══════════════════════════════════════════════════
-//  DB（キャッシュ読み書き + バックグラウンド同期）
+//  DB（キャッシュ操作 + バックグラウンド同期）
 // ═══════════════════════════════════════════════════
 const DB = {
-  purposes()    { return CACHE.purposes; },
-  txs()         { return CACHE.transactions; },
-  payments()    { return CACHE.payments.map(p=>p.name); },
-  fixCats()     { return CACHE.fixCats; },
-  fixRecs()     { return CACHE.fixRecs; },
+  purposes() { return CACHE.purposes; },
+  txs()      { return CACHE.transactions; },
+  payments() { return CACHE.payments.map(p=>p.name); },
+  fixCats()  { return CACHE.fixCats; },
+  fixRecs()  { return CACHE.fixRecs; },
 
-  savePurp(newData){
-    const old=[...CACHE.purposes];
-    CACHE.purposes=newData;
-    bgSync(()=>diffSync('purposes', old, newData));
+  savePurp(d){
+    const old=[...CACHE.purposes];CACHE.purposes=d;saveLS();
+    bgSync(()=>diffSync('purposes',old,d));
   },
-  saveTxs(newData){
-    const old=[...CACHE.transactions];
-    CACHE.transactions=newData;
-    bgSync(()=>diffSync('transactions', old, newData));
+  saveTxs(d){
+    const old=[...CACHE.transactions];CACHE.transactions=d;saveLS();
+    bgSync(()=>diffSync('transactions',old,d));
   },
-  savePay(newNames){
+  savePay(names){
     const old=[...CACHE.payments];
-    const newObjs=newNames.map(name=>{
-      const ex=old.find(p=>p.name===name);
-      return ex||{id:uid(),name};
-    });
-    CACHE.payments=newObjs;
-    bgSync(()=>diffSync('payment_methods', old, newObjs));
+    const newObjs=names.map(name=>old.find(p=>p.name===name)||{id:uid(),name});
+    CACHE.payments=newObjs;saveLS();
+    bgSync(()=>diffSync('payment_methods',old,newObjs));
   },
-  saveFixCats(newData){
-    const old=[...CACHE.fixCats];
-    CACHE.fixCats=newData;
-    bgSync(()=>diffSync('fixed_cats', old, newData));
+  saveFixCats(d){
+    const old=[...CACHE.fixCats];CACHE.fixCats=d;saveLS();
+    bgSync(()=>diffSync('fixed_cats',old,d));
   },
-  saveFixRecs(newData){
-    const old=[...CACHE.fixRecs];
-    CACHE.fixRecs=newData;
-    bgSync(()=>diffSync('fixed_records', old, newData));
+  saveFixRecs(d){
+    const old=[...CACHE.fixRecs];CACHE.fixRecs=d;saveLS();
+    bgSync(()=>diffSync('fixed_records',old,d));
   },
 };
 
 // ═══════════════════════════════════════════════════
-//  描画ルート
+//  描画
 // ═══════════════════════════════════════════════════
 function render(){
   renderNav();
@@ -553,8 +542,7 @@ function renderNav(){
   ];
   document.getElementById('nav').innerHTML=items.map(it=>`
     <button class="nb${page===it.p?' on':''}" onclick="nav('${it.p}')">
-      <span class="nb-ic">${it.ic}</span>
-      <span>${it.lb}</span>
+      <span class="nb-ic">${it.ic}</span><span>${it.lb}</span>
     </button>`).join('');
 }
 
@@ -579,8 +567,7 @@ function renderHome(){
   const total=mTxs.reduce((s,t)=>s+Number(t.amount),0);
   const todayTotal=txs.filter(t=>t.date===today()).reduce((s,t)=>s+Number(t.amount),0);
   const recent=[...txs].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);
-  const purps=DB.purposes();
-  const pOpts=purps.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  const pOpts=DB.purposes().map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
 
   return `
   <div class="stat-card">
@@ -588,7 +575,6 @@ function renderHome(){
     <div class="stat-val">${yen(total)}</div>
     <div class="stat-sub">本日: ${yen(todayTotal)} &nbsp;|&nbsp; ${mTxs.length}件</div>
   </div>
-
   <div class="card">
     <div class="card-t">支出を追加</div>
     <form id="addForm">
@@ -620,16 +606,13 @@ function renderHome(){
       <button type="submit" class="btn btn-p btn-w">[ 登録する ]</button>
     </form>
   </div>
-
   ${recent.length===0?'':`
   <div class="card">
     <div class="card-t">直近の支出（使用日順）</div>
     ${recent.map(t=>`
     <div class="li">
       <div>
-        <div class="li-name">
-          <span class="dot" style="background:${purpColor(t.purposeId)}"></span>${purpName(t.purposeId)}
-        </div>
+        <div class="li-name"><span class="dot" style="background:${purpColor(t.purposeId)}"></span>${purpName(t.purposeId)}</div>
         <div class="li-meta">${fdate(t.date)}${t.memo?` &mdash; ${t.memo}`:''}</div>
       </div>
       <div class="li-right"><div class="li-amt">${yen(t.amount)}</div></div>
@@ -658,7 +641,6 @@ function renderList(){
     </div>
     <div class="status-bar">${statusText}</div>
   </div>
-
   <div class="card" style="padding:0;overflow:hidden;">
     <div class="tbl-wrap">
       <table>
@@ -681,8 +663,7 @@ function buildRows(custom){
   let txs=custom??[...DB.txs()].sort((a,b)=>new Date(b.date)-new Date(a.date));
   if(!txs.length) return `<tr><td colspan="5" class="empty">--- データなし ---</td></tr>`;
   return txs.map(t=>{
-    const pn=purpName(t.purposeId);
-    const pc=purpColor(t.purposeId);
+    const pn=purpName(t.purposeId),pc=purpColor(t.purposeId);
     const po=purps.map(p=>`<option value="${p.id}"${p.id==t.purposeId?' selected':''}>${p.name}</option>`).join('');
     return `
     <tr id="tr-${t.id}">
@@ -723,33 +704,21 @@ function applyLF(){
   if(!v){toast('× 月を選択してください');return;}
   listFilter=v;
   const [y,m]=v.split('-').map(Number);
-  const txs=[...DB.txs()]
-    .filter(t=>{const d=new Date(t.date);return d.getFullYear()===y&&d.getMonth()+1===m;})
-    .sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const txs=[...DB.txs()].filter(t=>{const d=new Date(t.date);return d.getFullYear()===y&&d.getMonth()+1===m;}).sort((a,b)=>new Date(b.date)-new Date(a.date));
   document.getElementById('listBody').innerHTML=buildRows(txs);
-  document.querySelector('.status-bar').innerHTML=
-    `<span>${v.split('-')[0]}年 ${v.split('-')[1]}月 を表示中</span>`;
+  document.querySelector('.status-bar').innerHTML=`<span>${v.split('-')[0]}年 ${v.split('-')[1]}月 を表示中</span>`;
 }
 function clearLF(){listFilter='';render();}
-
-function startEdit(id){
-  const r=document.getElementById(`tr-${id}`);
-  r.querySelectorAll('.vm,.vm-b').forEach(e=>e.classList.add('hidden'));
-  r.querySelectorAll('.em,.em-b').forEach(e=>e.classList.remove('hidden'));
-}
-function cancelEdit(id){
-  const r=document.getElementById(`tr-${id}`);
-  r.querySelectorAll('.vm,.vm-b').forEach(e=>e.classList.remove('hidden'));
-  r.querySelectorAll('.em,.em-b').forEach(e=>e.classList.add('hidden'));
-}
+function startEdit(id){const r=document.getElementById(`tr-${id}`);r.querySelectorAll('.vm,.vm-b').forEach(e=>e.classList.add('hidden'));r.querySelectorAll('.em,.em-b').forEach(e=>e.classList.remove('hidden'));}
+function cancelEdit(id){const r=document.getElementById(`tr-${id}`);r.querySelectorAll('.vm,.vm-b').forEach(e=>e.classList.remove('hidden'));r.querySelectorAll('.em,.em-b').forEach(e=>e.classList.add('hidden'));}
 function saveTx(id){
   const r=document.getElementById(`tr-${id}`);
   const els=[...r.querySelectorAll('.em')];
   const txs=DB.txs();const tx=txs.find(t=>t.id===id);if(!tx)return;
-  tx.date     =els.find(e=>e.type==='date').value;
+  tx.date=els.find(e=>e.type==='date').value;
   tx.purposeId=els.find(e=>e.tagName==='SELECT').value;
-  tx.amount   =Number(els.find(e=>e.type==='number').value);
-  tx.memo     =els.find(e=>e.type==='text').value.trim();
+  tx.amount=Number(els.find(e=>e.type==='number').value);
+  tx.memo=els.find(e=>e.type==='text').value.trim();
   DB.saveTxs(txs);toast('✓ 更新しました');render();
 }
 function delTx(id){
@@ -769,27 +738,13 @@ function renderGraph(){
     <button class="tab${gMode==='yearly'?' on':''}"  onclick="switchG('yearly')">年別</button>
   </div>
   <div class="card" id="gFC">${renderGFilter(ymKey(y,m),y)}</div>
-  <div class="card">
-    <div class="card-t">支出推移</div>
-    <canvas id="barChart"></canvas>
-  </div>
-  <div class="card">
-    <div class="card-t">用途別内訳</div>
-    <canvas id="pieChart"></canvas>
-  </div>`;
+  <div class="card"><div class="card-t">支出推移</div><canvas id="barChart"></canvas></div>
+  <div class="card"><div class="card-t">用途別内訳</div><canvas id="pieChart"></canvas></div>`;
 }
 
 function renderGFilter(dm,y){
-  if(gMode==='daily') return `
-    <div class="row">
-      <label class="field-lbl" style="white-space:nowrap;margin:0;padding-right:10px;">対象月</label>
-      <input type="month" id="gMonth" value="${dm}" onchange="buildCharts()" style="flex:1;">
-    </div>`;
-  if(gMode==='monthly') return `
-    <div class="row">
-      <label class="field-lbl" style="white-space:nowrap;margin:0;padding-right:10px;">対象年</label>
-      <input type="number" id="gYear" value="${y}" min="2020" max="2099" onchange="buildCharts()" style="width:110px;flex:none;">
-    </div>`;
+  if(gMode==='daily') return `<div class="row"><label class="field-lbl" style="white-space:nowrap;margin:0;padding-right:10px;">対象月</label><input type="month" id="gMonth" value="${dm}" onchange="buildCharts()" style="flex:1;"></div>`;
+  if(gMode==='monthly') return `<div class="row"><label class="field-lbl" style="white-space:nowrap;margin:0;padding-right:10px;">対象年</label><input type="number" id="gYear" value="${y}" min="2020" max="2099" onchange="buildCharts()" style="width:110px;flex:none;"></div>`;
   return `<span class="fs13 c-sub">全期間の年別データを表示しています</span>`;
 }
 
@@ -797,17 +752,14 @@ function switchG(mode){
   destroyCharts();gMode=mode;
   const {y,m}=nowYM();
   document.getElementById('gFC').innerHTML=renderGFilter(ymKey(y,m),y);
-  document.querySelectorAll('.tab').forEach((b,i)=>{
-    const ms=['daily','monthly','yearly'];
-    b.className='tab'+(ms[i]===gMode?' on':'');
-  });
+  document.querySelectorAll('.tab').forEach((b,i)=>{const ms=['daily','monthly','yearly'];b.className='tab'+(ms[i]===gMode?' on':'');});
   buildCharts();
 }
 
 function buildCharts(){
   destroyCharts();
   Chart.defaults.color='#aaa';Chart.defaults.borderColor='#2a2a2a';
-  const txs=DB.txs();const purps=DB.purposes();
+  const txs=DB.txs(),purps=DB.purposes();
   let labels=[],barData=[],filteredTxs=[];
   const {y:cy,m:cm}=nowYM();
 
@@ -838,19 +790,14 @@ function buildCharts(){
     charts.bar=new Chart(bC,{
       type:'bar',
       data:{labels,datasets:[{label:'支出',data:barData,backgroundColor:'rgba(57,211,83,0.25)',borderColor:'#39d353',borderWidth:1,borderRadius:3}]},
-      options:{
-        responsive:true,
-        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`¥${c.parsed.y.toLocaleString('ja-JP')}`}}},
-        scales:{x:{grid:{color:'#1e1e1e'},ticks:{color:'#aaa'}},y:{beginAtZero:true,grid:{color:'#1e1e1e'},ticks:{color:'#aaa',callback:v=>`¥${Number(v).toLocaleString('ja-JP')}`}}}
-      }
+      options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`¥${c.parsed.y.toLocaleString('ja-JP')}`}}},scales:{x:{grid:{color:'#1e1e1e'},ticks:{color:'#aaa'}},y:{beginAtZero:true,grid:{color:'#1e1e1e'},ticks:{color:'#aaa',callback:v=>`¥${Number(v).toLocaleString('ja-JP')}`}}}}
     });
   }
-
   const pMap={};
   filteredTxs.forEach(t=>{
     const p=purps.find(p=>p.id==t.purposeId);
     const key=p?.name??'不明';
-    if(!pMap[key]){pMap[key]={total:0,color:p?.color??'#888'};}
+    if(!pMap[key]) pMap[key]={total:0,color:p?.color??'#888'};
     pMap[key].total+=Number(t.amount);
   });
   const pC=document.getElementById('pieChart');
@@ -867,9 +814,7 @@ function buildCharts(){
 //  ④ 固定費
 // ═══════════════════════════════════════════════════
 function renderFixed(){
-  const cats=DB.fixCats();
-  const pays=DB.payments();
-
+  const cats=DB.fixCats(),pays=DB.payments();
   return `
   <div class="card">
     <div class="card-t">
@@ -883,13 +828,11 @@ function renderFixed(){
         <input type="text" id="payName" placeholder="支払方法名（例: PayPay）" style="flex:1;">
         <button type="submit" class="btn btn-p btn-sm">追加</button>
       </form>
-      ${pays.length===0
-        ?`<div class="empty">支払方法なし</div>`
-        :pays.map((p,i)=>`
-        <div class="sr fs14">
-          <span><span class="c-acc">&#9656;</span> ${p}</span>
-          <button class="btn btn-d btn-xs" onclick="delPay(${i})">削除</button>
-        </div>`).join('')}
+      ${pays.length===0?`<div class="empty">支払方法なし</div>`:pays.map((p,i)=>`
+      <div class="sr fs14">
+        <span><span class="c-acc">&#9656;</span> ${p}</span>
+        <button class="btn btn-d btn-xs" onclick="delPay(${i})">削除</button>
+      </div>`).join('')}
     </div>
   </div>
 
@@ -903,14 +846,8 @@ function renderFixed(){
     <div id="cb-cat"${coll.cat?'':' class="hidden"'}>
       <form id="addCatForm" class="mb12">
         <div class="g2 mb12">
-          <div class="fg">
-            <label class="field-lbl">カテゴリ名</label>
-            <input type="text" id="catName" placeholder="例: 家賃">
-          </div>
-          <div class="fg">
-            <label class="field-lbl">想定金額</label>
-            <div class="pfx"><span class="pfx-sym">¥</span><input type="number" id="catExp" placeholder="0" inputmode="numeric"></div>
-          </div>
+          <div class="fg"><label class="field-lbl">カテゴリ名</label><input type="text" id="catName" placeholder="例: 家賃"></div>
+          <div class="fg"><label class="field-lbl">想定金額</label><div class="pfx"><span class="pfx-sym">¥</span><input type="number" id="catExp" placeholder="0" inputmode="numeric"></div></div>
         </div>
         <div class="fg mb12">
           <label class="field-lbl">支払方法</label>
@@ -919,19 +856,17 @@ function renderFixed(){
         <button type="submit" class="btn btn-p btn-w btn-sm">カテゴリを追加</button>
       </form>
       <hr class="sep">
-      ${cats.length===0
-        ?`<div class="empty">カテゴリなし</div>`
-        :cats.map(c=>`
-        <div class="sr" id="cat-row-${c.id}">
-          <div style="flex:1;">
-            <div class="fs14"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11">${c.paymentMethod}</span></div>
-            <div class="fs12 c-sub mt6">想定額: ${yen(c.expectedAmount||0)}</div>
-          </div>
-          <div class="row" style="gap:5px;">
-            <button class="btn btn-g btn-xs" onclick="editCat('${c.id}')">編集</button>
-            <button class="btn btn-d btn-xs" onclick="delCat('${c.id}')">削除</button>
-          </div>
-        </div>`).join('')}
+      ${cats.length===0?`<div class="empty">カテゴリなし</div>`:cats.map(c=>`
+      <div class="sr" id="cat-row-${c.id}">
+        <div style="flex:1;">
+          <div class="fs14"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11">${c.paymentMethod}</span></div>
+          <div class="fs12 c-sub mt6">想定額: ${yen(c.expectedAmount||0)}</div>
+        </div>
+        <div class="row" style="gap:5px;">
+          <button class="btn btn-g btn-xs" onclick="editCat('${c.id}')">編集</button>
+          <button class="btn btn-d btn-xs" onclick="delCat('${c.id}')">削除</button>
+        </div>
+      </div>`).join('')}
     </div>
   </div>
 
@@ -942,7 +877,6 @@ function renderFixed(){
     </div>
     <div id="fixEntryArea">${renderFixEntry()}</div>
   </div>
-
   <div class="card" id="fixSummaryCard">${renderFixSummary()}</div>`;
 }
 
@@ -968,16 +902,10 @@ function renderFixEntry(){
       return `
       <div style="margin-bottom:18px;">
         <div class="row mb8">
-          <span class="fs14" style="flex:1;">
-            <span class="c-acc">&#9656;</span> ${c.name}
-            <span class="tag fs11" style="margin-left:5px;">${c.paymentMethod}</span>
-          </span>
+          <span class="fs14" style="flex:1;"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11" style="margin-left:5px;">${c.paymentMethod}</span></span>
           ${exp>0?`<span class="fs12 c-sub">想定: ${yen(exp)}</span>`:''}
         </div>
-        <div class="pfx">
-          <span class="pfx-sym">¥</span>
-          <input type="number" inputmode="numeric" data-cat="${c.id}" class="fx-inp" value="${actual||''}" placeholder="0">
-        </div>
+        <div class="pfx"><span class="pfx-sym">¥</span><input type="number" inputmode="numeric" data-cat="${c.id}" class="fx-inp" value="${actual||''}" placeholder="0"></div>
         ${exp>0?`
         <div class="prog-wrap mt6"><div class="prog-fill${over?' over':''}" style="width:${pct}%;"></div></div>
         <div class="fs12 c-sub" style="margin-top:4px;text-align:right;">
@@ -995,10 +923,8 @@ function renderFixSummary(){
   const recs=DB.fixRecs().filter(r=>Number(r.y)===y&&Number(r.m)===m);
   const pays=DB.payments();
   let totExp=0,totAct=0;
-
   const rows=pays.map(pm=>{
-    const pmC=cats.filter(c=>c.paymentMethod===pm);
-    if(!pmC.length)return null;
+    const pmC=cats.filter(c=>c.paymentMethod===pm);if(!pmC.length)return null;
     const expS=pmC.reduce((s,c)=>s+Number(c.expectedAmount||0),0);
     const actS=pmC.reduce((s,c)=>{const r=recs.find(r=>r.catId===c.id);return s+(r?Number(r.amount):0);},0);
     totExp+=expS;totAct+=actS;
@@ -1006,22 +932,13 @@ function renderFixSummary(){
     return{pm,expS,actS,diff:actS-expS};
   }).filter(Boolean);
 
-  if(!rows.length) return `
-    <div class="card-t">集計 &mdash; ${ymStr(y,m)}</div>
-    <div class="empty">データがありません</div>`;
+  if(!rows.length) return `<div class="card-t">集計 &mdash; ${ymStr(y,m)}</div><div class="empty">データがありません</div>`;
 
   return `
   <div class="card-t">集計 &mdash; ${ymStr(y,m)}</div>
   <div class="tbl-wrap">
     <table style="min-width:0;width:100%;">
-      <thead>
-        <tr>
-          <th>支払方法</th>
-          <th style="text-align:right">想定額</th>
-          <th style="text-align:right">実績</th>
-          <th style="text-align:right">差額</th>
-        </tr>
-      </thead>
+      <thead><tr><th>支払方法</th><th style="text-align:right">想定額</th><th style="text-align:right">実績</th><th style="text-align:right">差額</th></tr></thead>
       <tbody>
         ${rows.map(r=>`
         <tr>
@@ -1070,11 +987,9 @@ function saveFixRecs(){
 }
 
 function delPay(idx){
-  const pays=DB.payments();
-  const pay=pays[idx];
+  const pays=DB.payments();const pay=pays[idx];
   if(!confirm(`「${pay}」を削除しますか？`))return;
-  pays.splice(idx,1);
-  DB.savePay(pays);toast('✓ 削除しました');render();
+  pays.splice(idx,1);DB.savePay(pays);toast('✓ 削除しました');render();
 }
 function delCat(id){
   if(!confirm('このカテゴリを削除しますか？'))return;
@@ -1111,7 +1026,7 @@ function saveCat(id){
 }
 
 // ═══════════════════════════════════════════════════
-//  ⑤ 用途マスタ
+//  ⑤ マスタ
 // ═══════════════════════════════════════════════════
 function renderMaster(){
   const purps=DB.purposes();
@@ -1148,35 +1063,19 @@ function renderMaster(){
   </div>`;
 }
 
-function editPurp(id){
-  const r=document.getElementById(`purp-${id}`);
-  r.querySelector('.vm-n').classList.add('hidden');
-  r.querySelector('.em-n').classList.remove('hidden');
-  r.querySelector('.em-c').classList.remove('hidden');
-  r.querySelector('.vm-a').classList.add('hidden');
-  r.querySelector('.em-a').classList.remove('hidden');
-}
-function cancelPurp(id){
-  const r=document.getElementById(`purp-${id}`);
-  r.querySelector('.vm-n').classList.remove('hidden');
-  r.querySelector('.em-n').classList.add('hidden');
-  r.querySelector('.em-c').classList.add('hidden');
-  r.querySelector('.vm-a').classList.remove('hidden');
-  r.querySelector('.em-a').classList.add('hidden');
-}
+function editPurp(id){const r=document.getElementById(`purp-${id}`);r.querySelector('.vm-n').classList.add('hidden');r.querySelector('.em-n').classList.remove('hidden');r.querySelector('.em-c').classList.remove('hidden');r.querySelector('.vm-a').classList.add('hidden');r.querySelector('.em-a').classList.remove('hidden');}
+function cancelPurp(id){const r=document.getElementById(`purp-${id}`);r.querySelector('.vm-n').classList.remove('hidden');r.querySelector('.em-n').classList.add('hidden');r.querySelector('.em-c').classList.add('hidden');r.querySelector('.vm-a').classList.remove('hidden');r.querySelector('.em-a').classList.add('hidden');}
 function savePurp(id){
   const r=document.getElementById(`purp-${id}`);
   const name=r.querySelector('.em-n').value.trim();
   const color=r.querySelector('.em-c').value;
   if(!name){toast('× 用途名を入力してください');return;}
   const purps=DB.purposes();const p=purps.find(p=>p.id==id);if(!p)return;
-  p.name=name;p.color=color;
-  DB.savePurp(purps);toast('✓ 更新しました');render();
+  p.name=name;p.color=color;DB.savePurp(purps);toast('✓ 更新しました');render();
 }
 function delPurp(id){
   if(!confirm('この用途を削除しますか？'))return;
-  DB.savePurp(DB.purposes().filter(p=>p.id!=id));
-  toast('✓ 削除しました');render();
+  DB.savePurp(DB.purposes().filter(p=>p.id!=id));toast('✓ 削除しました');render();
 }
 
 // ═══════════════════════════════════════════════════
@@ -1214,8 +1113,7 @@ function bindEvents(){
     if(!name){toast('× 用途名を入力してください');return;}
     const purps=DB.purposes();
     if(purps.find(p=>p.name===name)){toast('× 同名の用途が既に存在します');return;}
-    purps.push({id:uid(),name,color});
-    DB.savePurp(purps);toast('✓ 追加しました');render();
+    purps.push({id:uid(),name,color});DB.savePurp(purps);toast('✓ 追加しました');render();
   });
 
   document.getElementById('addPayForm')?.addEventListener('submit',e=>{
