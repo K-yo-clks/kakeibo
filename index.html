@@ -349,6 +349,28 @@ async function api(action, sheet, data=null, id=null){
   }
 }
 
+async function diffSync(sheet, oldArr, newArr){
+  // 削除
+  for(const item of oldArr){
+    if(!newArr.find(n=>n.id===item.id)){
+      await api('delete', sheet, null, item.id);
+    }
+  }
+  // 追加
+  for(const item of newArr){
+    if(!oldArr.find(o=>o.id===item.id)){
+      await api('insert', sheet, item);
+    }
+  }
+  // 更新
+  for(const item of newArr){
+    const old=oldArr.find(o=>o.id===item.id);
+    if(old && JSON.stringify(old)!==JSON.stringify(item)){
+      await api('update', sheet, item);
+    }
+  }
+}
+
 function bgSync(fn){
   syncCount++;
   setBadge('同期中...','var(--yel)');
