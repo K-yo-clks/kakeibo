@@ -324,25 +324,28 @@ function setBadge(text, color='var(--dim)'){
 //  GAS API
 // ═══════════════════════════════════════════════════
 async function api(action, sheet, data=null, id=null){
-  const params={action, sheet};
-  if(data!==null) params.data=JSON.stringify(data);
-  if(id!==null)   params.id=id;
-  const url=GAS_URL+'?'+new URLSearchParams(params).toString();
-  const res=await fetch(url);
-  if(!res.ok) throw new Error(`HTTP ${res.status}`);
-  return await res.json();
-}
+  // getAll と delete は GET、insert と update は POST
+  if(action === 'getAll' || action === 'initAll'){
+    // GETリクエスト
+    const params = {action, sheet};
+    if(id !== null) params.id = id;
+    const url = GAS_URL + '?' + new URLSearchParams(params).toString();
+    const res = await fetch(url);
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
 
-async function diffSync(sheet, oldArr, newArr){
-  for(const item of oldArr){
-    if(!newArr.find(n=>n.id===item.id)) await api('delete',sheet,null,item.id);
-  }
-  for(const item of newArr){
-    if(!oldArr.find(o=>o.id===item.id)) await api('insert',sheet,item);
-  }
-  for(const item of newArr){
-    const old=oldArr.find(o=>o.id===item.id);
-    if(old && JSON.stringify(old)!==JSON.stringify(item)) await api('update',sheet,item);
+  } else {
+    // POSTリクエスト（insert / update / delete）
+    const body = {action, sheet};
+    if(data !== null) body.data = JSON.stringify(data);
+    if(id !== null)   body.id   = id;
+    const res = await fetch(GAS_URL, {
+      method:  'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body:    new URLSearchParams(body).toString(),
+    });
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
   }
 }
 
