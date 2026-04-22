@@ -369,6 +369,13 @@ const uid      = ()=>Date.now().toString(36)+Math.random().toString(36).slice(2)
 const today    = ()=>new Date().toISOString().split('T')[0];
 const nowYM    = ()=>{const n=new Date();return{y:n.getFullYear(),m:n.getMonth()+1};};
 const yen      = v=>'¥'+Number(v).toLocaleString('ja-JP');
+const normalizeDate = val => {
+  if(!val) return today();
+  if(typeof val === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+  const d = new Date(val);
+  if(isNaN(d.getTime())) return today();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+};
 const fdate = s => {
   if(!s) return '—';
   // normalizeDate で YYYY-MM-DD にしてから表示
