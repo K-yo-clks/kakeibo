@@ -321,8 +321,9 @@ let CACHE = {
 };
 
 // ローカルストレージキャッシュ
-const LS_KEY    = 'kakeibo_v2';
-const LS_TS_KEY = 'kakeibo_v2_ts';
+const LS_VERSION = 'v3';
+const LS_KEY     = 'kakeibo_' + LS_VERSION;
+const LS_TS_KEY  = 'kakeibo_' + LS_VERSION + '_ts';
 
 function saveLS(){
   try{
@@ -473,8 +474,14 @@ async function fetchAll(){
   if(Array.isArray(pays)&&pays.length) CACHE.payments=pays;
   else if(!CACHE.payments.length) CACHE.payments=INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
 
-  CACHE.fixCats=Array.isArray(cats)
-    ?cats.map(c=>({...c,expectedAmount:Number(c.expectedAmount||0)})):[];
+  CACHE.fixCats = Array.isArray(cats)
+      ? cats.map(c => ({
+          id:            String(c.id            ?? ''),
+          name:          String(c.name          ?? ''),
+          paymentMethod: String(c.paymentMethod ?? ''),   // ← undefined を '' に
+          expectedAmount: Number(c.expectedAmount ?? 0),
+        }))
+      : [];
 
   CACHE.fixRecs=Array.isArray(recs)
     ?recs.map(r=>({...r,amount:Number(r.amount),y:Number(r.y),m:Number(r.m)})):[];
@@ -492,7 +499,11 @@ async function fetchAll(){
 //  起動処理（キャッシュ優先）
 // ═══════════════════════════════════════════════════
 async function init(){
-  const overlay=document.getElementById('loadOverlay');
+  ['kakeibo_v2','kakeibo_v2_ts','kakeibo_v1','kakeibo_v1_ts'].forEach(key => {
+    try { localStorage.removeItem(key); } catch(e) {}
+  });
+
+  const overlay = document.getElementById('loadOverlay');
   const msg=document.getElementById('loadMsg');
 
   // GAS URL未設定
