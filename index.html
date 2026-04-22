@@ -1000,7 +1000,7 @@ function renderFixEntry(){
   return `
   <div id="fixInputs">
     ${cats.map(c=>{
-      const rec=recs.find(r=>r.catId===c.id&&Number(r.y)===y&&Number(r.m)===m);
+      const rec=recs.find(r=>String(r.catId)===String(c.id)&&Number(r.y)===y&&Number(r.m)===m);
       const actual=rec?Number(rec.amount):0;
       const exp=Number(c.expectedAmount||0);
       const pct=exp>0?Math.min((actual/exp)*100,100):0;
@@ -1008,7 +1008,7 @@ function renderFixEntry(){
       return `
       <div style="margin-bottom:18px;">
         <div class="row mb8">
-          <span class="fs14" style="flex:1;"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11" style="margin-left:5px;">${c.paymentMethod}</span></span>
+          <span class="fs14" style="flex:1;"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11" style="margin-left:5px;">${c.paymentMethod||'—'}</span></span>
           ${exp>0?`<span class="fs12 c-sub">想定: ${yen(exp)}</span>`:''}
         </div>
         <div class="pfx"><span class="pfx-sym">¥</span><input type="number" inputmode="numeric" data-cat="${c.id}" class="fx-inp" value="${actual||''}" placeholder="0"></div>
@@ -1027,24 +1027,40 @@ function renderFixSummary(){
   const {y,m}=fixYM;
   const cats=DB.fixCats();
   const recs=DB.fixRecs().filter(r=>Number(r.y)===y&&Number(r.m)===m);
-  const pays=DB.payments();
-  let totExp=0,totAct=0;
-  const rows=pays.map(pm=>{
-    const pmC=cats.filter(c=>c.paymentMethod===pm);if(!pmC.length)return null;
-    const expS=pmC.reduce((s,c)=>s+Number(c.expectedAmount||0),0);
-    const actS=pmC.reduce((s,c)=>{const r=recs.find(r=>r.catId===c.id);return s+(r?Number(r.amount):0);},0);
-    totExp+=expS;totAct+=actS;
-    if(!expS&&!actS)return null;
-    return{pm,expS,actS,diff:actS-expS};
-  }).filter(Boolean);
 
-  if(!rows.length) return `<div class="card-t">集計 &mdash; ${ymStr(y,m)}</div><div class="empty">データがありません</div>`;
+  // カテゴリの paymentMethod でグループ化（空は「未設定」）
+  const groupMap={};
+  cats.forEach(c=>{
+    const key=c.paymentMethod||'未設定';
+    if(!groupMap[key]) groupMap[key]={expS:0,actS:0};
+    const rec=recs.find(r=>String(r.catId)===String(c.id));  // ← 型統一
+    groupMap[key].expS+=Number(c.expectedAmount||0);
+    groupMap[key].actS+=rec?Number(rec.amount):0;
+  });
+
+  const rows=Object.entries(groupMap)
+    .map(([pm,d])=>({pm,expS:d.expS,actS:d.actS,diff:d.actS-d.expS}))
+    .filter(r=>r.expS>0||r.actS>0);
+
+  const totExp=rows.reduce((s,r)=>s+r.expS,0);
+  const totAct=rows.reduce((s,r)=>s+r.actS,0);
+
+  if(!rows.length) return `
+    <div class="card-t">集計 &mdash; ${ymStr(y,m)}</div>
+    <div class="empty">データがありません</div>`;
 
   return `
   <div class="card-t">集計 &mdash; ${ymStr(y,m)}</div>
   <div class="tbl-wrap">
     <table style="min-width:0;width:100%;">
-      <thead><tr><th>支払方法</th><th style="text-align:right">想定額</th><th style="text-align:right">実績</th><th style="text-align:right">差額</th></tr></thead>
+      <thead>
+        <tr>
+          <th>支払方法</th>
+          <th style="text-align:right">想定額</th>
+          <th style="text-align:right">実績</th>
+          <th style="text-align:right">差額</th>
+        </tr>
+      </thead>
       <tbody>
         ${rows.map(r=>`
         <tr>
@@ -1059,16 +1075,25 @@ function renderFixSummary(){
     </table>
   </div>
   <hr class="sep">
-  <div class="sr"><span class="fs13 c-sub ls2">想定合計</span><span class="fs14 c-sub">${yen(totExp)}</span></div>
-  <div class="sr"><span class="fs13 c-acc ls2 bold">実績合計</span><span class="fs28 c-acc bold">${yen(totAct)}</span></div>
+  <div class="sr">
+    <span class="fs13 c-sub ls2">想定合計</span>
+    <span class="fs14 c-sub">${yen(totExp)}</span>
+  </div>
+  <div class="sr">
+    <span class="fs13 c-acc ls2 bold">実績合計</span>
+    <span class="fs28 c-acc bold">${yen(totAct)}</span>
+  </div>
   ${totExp>0?`
   <div style="margin-top:14px;">
     <div class="row" style="justify-content:space-between;margin-bottom:6px;">
       <span class="fs12 c-sub">予算消化率</span>
-      <span class="fs13 bold ${totAct>totExp?'c-red':'c-acc'}">${Math.round((totAct/totExp)*100)}%</span>
+      <span class="fs13 bold ${totAct>totExp?'c-red':'c-acc'}">
+        ${Math.round((totAct/totExp)*100)}%
+      </span>
     </div>
     <div class="prog-wrap" style="height:5px;">
-      <div class="prog-fill${totAct>totExp?' over':''}" style="width:${Math.min((totAct/totExp)*100,100)}%;"></div>
+      <div class="prog-fill${totAct>totExp?' over':''}"
+           style="width:${Math.min((totAct/totExp)*100,100)}%;"></div>
     </div>
   </div>`:''}`;
 }
