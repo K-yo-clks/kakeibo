@@ -612,11 +612,11 @@ async function reloadData(){
 //  DB（キャッシュ操作 + バックグラウンド同期）
 // ═══════════════════════════════════════════════════
 const DB = {
-  purposes() { return [...CACHE.purposes]; },
-  txs()      { return [...CACHE.transactions]; },
+  purposes() { return JSON.parse(JSON.stringify(CACHE.purposes)); },
+  txs()      { return JSON.parse(JSON.stringify(CACHE.transactions)); },
   payments() { return CACHE.payments.map(p=>p.name); },
-  fixCats()  { return [...CACHE.fixCats]; },
-  fixRecs()  { return [...CACHE.fixRecs]; },
+  fixCats()  { return JSON.parse(JSON.stringify(CACHE.fixCats)); },
+  fixRecs()  { return JSON.parse(JSON.stringify(CACHE.fixRecs)); },
 
   savePurp(d){
     const old = JSON.parse(JSON.stringify(CACHE.purposes));
