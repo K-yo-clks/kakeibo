@@ -1029,7 +1029,16 @@ function renderFixEntry(){
           <span class="fs14" style="flex:1;"><span class="c-acc">&#9656;</span> ${c.name} <span class="tag fs11" style="margin-left:5px;">${c.paymentMethod||'—'}</span></span>
           ${exp>0?`<span class="fs12 c-sub">想定: ${yen(exp)}</span>`:''}
         </div>
-        <div class="pfx"><span class="pfx-sym">¥</span><input type="number" inputmode="numeric" data-cat="${c.id}" class="fx-inp" value="${actual||''}" placeholder="0"></div>
+        <div class="pfx">
+          <span class="pfx-sym">
+            ¥
+          </span>
+          <input type="text" inputmode="numeric" data-cat="${c.id}" class="fx-inp"
+            value="${actual>0 ? Number(actual).toLocaleString('ja-JP') : ''}"
+            placeholder="0"
+            onfocus="this.value=this.value.replace(/,/g,'')"
+            onblur="if(this.value)this.value=Number(this.value.replace(/,/g,'')).toLocaleString('ja-JP')">
+        </div>
         ${exp>0?`
         <div class="prog-wrap mt6"><div class="prog-fill${over?' over':''}" style="width:${pct}%;"></div></div>
         <div class="fs12 c-sub" style="margin-top:4px;text-align:right;">
@@ -1128,7 +1137,7 @@ function saveFixRecs(){
   const [y,m]=v.split('-').map(Number);fixYM={y,m};
   let recs=DB.fixRecs().filter(r=>!(Number(r.y)===y&&Number(r.m)===m));
   document.querySelectorAll('.fx-inp').forEach(inp=>{
-    const a=parseFloat(inp.value);
+    const a=parseFloat(inp.value.replace(/,/g,''));
     if(!isNaN(a)&&a>0) recs.push({id:uid(),catId:inp.dataset.cat,y,m,amount:a});
   });
   DB.saveFixRecs(recs);toast('✓ 保存しました');
