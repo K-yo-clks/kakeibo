@@ -369,7 +369,13 @@ const uid      = ()=>Date.now().toString(36)+Math.random().toString(36).slice(2)
 const today    = ()=>new Date().toISOString().split('T')[0];
 const nowYM    = ()=>{const n=new Date();return{y:n.getFullYear(),m:n.getMonth()+1};};
 const yen      = v=>'¥'+Number(v).toLocaleString('ja-JP');
-const fdate    = s=>{const d=new Date(s+'T00:00:00');return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;};
+const fdate = s => {
+  if(!s) return '—';
+  // normalizeDate で YYYY-MM-DD にしてから表示
+  const norm = normalizeDate(s);
+  const [y,m,day] = norm.split('-');
+  return `${y}/${m}/${day}`;
+};
 const purpName = id=>CACHE.purposes.find(p=>p.id==id)?.name??'不明';
 const purpColor= id=>CACHE.purposes.find(p=>p.id==id)?.color??'#888';
 const ymStr    = (y,m)=>`${y}年${String(m).padStart(2,'0')}月`;
@@ -468,8 +474,13 @@ async function fetchAll(){
   if(Array.isArray(purps)&&purps.length) CACHE.purposes=purps;
   else if(!CACHE.purposes.length) CACHE.purposes=[...INIT_PURPOSES];
 
-  CACHE.transactions=Array.isArray(txs)
-    ?txs.map(t=>({...t,amount:Number(t.amount)})):[];
+  CACHE.transactions = Array.isArray(txs)
+    ? txs.map(t => ({
+        ...t,
+        amount: Number(t.amount),
+        date:   normalizeDate(t.date),  // ← 追加
+      }))
+    : [];
 
   if(Array.isArray(pays)&&pays.length) CACHE.payments=pays;
   else if(!CACHE.payments.length) CACHE.payments=INIT_PAYMENT_NAMES.map((name,i)=>({id:'pm'+i,name}));
